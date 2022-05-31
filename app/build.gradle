@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+apply from: 'dependencies.gradle'
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+android {
+    compileSdk sdk_version
+
+    defaultConfig {
+        applicationId "com.toptracer.virgiliomagalhaes"
+        minSdk minSdk_version
+        targetSdk sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField("String", "BASE_URL", "\"https://api.giphy.com/v1/\"")
+            buildConfigField("String", "API_KEY", "\"" + localProperties['giphy.apiKey'] + "\"")
+        }
+        release {
+            minifyEnabled false
+            buildConfigField("String", "BASE_URL", "\"https://api.giphy.com/v1/\"")
+            buildConfigField("String", "API_KEY", "\"" + localProperties['giphy.apiKey'] + "\"")
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    lintOptions {
+        ignore("UseCompatLoadingForDrawables")
+    }
+}
+
+dependencies {
+    implementation androidxDependencies.values()
+    implementation materialDependencies.values()
+    implementation networkDependencies.values()
+    kapt moshiKapt
+    annotationProcessor glideAnnotation
+    testImplementation jUnit
+    androidTestImplementation androidTestDependencies.values()
+}

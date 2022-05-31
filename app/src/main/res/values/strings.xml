@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Toptracer Test</string>
+    <string name="app_welcome">Welcome {username}</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="ok">OK</string>
+
+    <string name="welcome_username">Welcome %s</string>
+    <string name="gihpy_author">Author %s</string>
+    <string name="dialog_title">Oops!</string>
+    <string name="username_empty_message">It looks like you forgot to provide a username.</string>
+    <string name="password_invalid">The password you provided does not match our records.</string>
+    <string name="giphy_error">Giphy Unavailable</string>
+    <string name="giphy_description">An gif animated image</string>
+</resources>
